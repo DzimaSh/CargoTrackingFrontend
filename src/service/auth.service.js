@@ -8,7 +8,15 @@ export const handleJwtResponse = (response) => {
     localStorage.clientId = payload.clientId;
 }
 
-export const configureRequest = () => {
+export const configureRequest = (params) => {
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.accessToken}` },
+        params 
+    };
+    return config;
+}
+
+export const configureRequestWithoutParams = () => {
     const config = {
         headers: { Authorization: `Bearer ${localStorage.accessToken}` }
     };
