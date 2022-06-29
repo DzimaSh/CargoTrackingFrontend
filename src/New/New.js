@@ -3,6 +3,7 @@ import axios from "axios";
 import { configureRequestWithoutParams } from "../service/auth.service";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import {handleInputLengthChange, validateEmail} from '@/service'
 
 function NewClientForm() {
 
@@ -76,7 +77,7 @@ function NewClientForm() {
         let config = configureRequestWithoutParams();
         axios.post('http://localhost:8080/api/clients', data, config)
             .catch(err => {
-            setErrors(err.response.data.errors);
+                setErrors(err.response.data.errors);
             })
             .then(response => {
                 if (response.status < 400) {
@@ -85,32 +86,8 @@ function NewClientForm() {
             })
     }
 
-    const handleInputLengthChange = (e, propertyName, minlength, maxlength, setError) => {
-        if (e.target.value.length > maxlength) {
-            setError([true, `${propertyName} is too long`])
-        }
-        else {
-            if (e.target.value.length < minlength) {
-                setError([true, `${propertyName} too short`])
-            } else {
-                setError([false, ''])
-            }
-        }
-    }
-
-    const validateEmail = (email) => {
-        let isValid = String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-        if (!isValid) {
-            setAdminEmailError([true, `Email is invalid`])
-        }
-      };
-
     return (
-        <form>
+        <form onChange={() => setErrors([])}>
             <p>Client info:</p>
             <div>
                 <label htmlFor='name'>Client name:</label>
@@ -142,7 +119,7 @@ function NewClientForm() {
             </div>
             <div>
                 <label htmlFor='admin_email'>Admin email:</label>
-                <input type='email' id='admin_email' name='admin_email' onChange={(e) => {handleInputLengthChange(e, 'Admin email', 1, 50, setAdminEmailError); validateEmail(e.target.value)}}/>
+                <input type='email' id='admin_email' name='admin_email' onChange={(e) => {handleInputLengthChange(e, 'Admin email', 1, 50, setAdminEmailError); validateEmail(e.target.value, setAdminEmailError)}}/>
                 {
                     adminEmailError[0] && 
                         <div style={{color:'red'}}>{adminEmailError[1]}</div>
