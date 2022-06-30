@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { handleInputLengthChange, configureRequestWithoutParams } from '@/service';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function UserChangePassword() {
 
@@ -114,6 +114,7 @@ export function UserChangePassword() {
                     {errors.map((error) => <li key={error}>{error}</li>)}
                 </ul>
             </p>
+            <Link to={'/profile'}>Abort and go back</Link>
         </div>
     );
 }

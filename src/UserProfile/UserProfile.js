@@ -48,7 +48,7 @@ export function UserProfile() {
             </div>
             <div className="links">
                 <div className="update_link">
-                    <Link to={'update'}>Update profile</Link>
+                    <Link to={'update'} state={userData}>Update profile</Link>
                 </div>
                 <div className="change-password_link">
                     <Link to={'change-password'}>Change password</Link>
