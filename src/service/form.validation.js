@@ -4,7 +4,7 @@ export const handleInputLengthChange = (e, propertyName, minlength, maxlength, s
     }
     else {
         if (e.target.value.length < minlength) {
-            setError([true, `${propertyName} too short`])
+            setError([true, `${propertyName} is too short`])
         } else {
             setError([false, ''])
         }

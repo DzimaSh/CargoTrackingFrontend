@@ -5,6 +5,7 @@ export const handleJwtResponse = (response) => {
 
     const payload = JSON.parse(atob(tokens[0].split('.')[1]));
     localStorage.setItem('roles', JSON.stringify(payload.auth));
+    localStorage.setItem('login', JSON.stringify(payload.sub).replaceAll('"', ''));
     localStorage.clientId = payload.clientId;
 }
 

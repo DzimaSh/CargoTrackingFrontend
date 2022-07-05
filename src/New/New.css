@@ -1,0 +1,28 @@
+.new-client {
+    display: flex;
+    align-items: stretch;
+}
+.client-form p {
+    background-color: whitesmoke;
+    font-size: 15px;
+    font-weight: 500;
+}
+.client-info {
+    margin-left: 15%;
+}
+.admin-info {
+    margin-left: 15%;
+}
+.input-info {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    
+}
+.input-info label {
+    margin-right: auto;
+    font-weight: 350;
+}
+.input-info input {
+    margin-left: auto;
+}

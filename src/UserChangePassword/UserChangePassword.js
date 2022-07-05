@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { handleInputLengthChange, configureRequestWithoutParams } from '@/service';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import './UserChangePassword.css';
 
 export function UserChangePassword() {
 
@@ -73,48 +74,54 @@ export function UserChangePassword() {
     }
 
     return (
-        <div>
+        <div className="change-password">
+            <div className="user-links">
+                <ul>
+                    <li><Link to={'/profile'}>Abort and go back</Link></li>
+                </ul>
+            </div>
             <form onChange={() => setErrors([])}>
-                <div className="password_input">
-                    <label htmlFor='old_password'>
-                        Old password
-                    </label>
-                    <input type='password' id='old_password' onChange={handleOldPasswordChange}/>
-                    {
-                        oldPasswordError[0] && 
-                            <div style={{color:'red'}}>{oldPasswordError[1]}</div>
-                    }
-                </div>
-                <div className="password_input">
-                    <label htmlFor='new_password'>
-                        New password
-                    </label>
-                    <input type='password' id='new_password' onChange={handleNewPasswordChange}/>
-                    {
-                        newPasswordError[0] && 
-                            <div style={{color:'red'}}>{newPasswordError[1]}</div>
-                    }
-                </div>
-                <div className="password_input">
-                    <label htmlFor='confirm_new_password'>
-                        Confirm password
-                    </label>
-                    <input type='password' id='confirm_new_password' onChange={checkIfConfirmedPasswordMatchs}/>
-                    {
-                        confirmPasswordError[0] && 
-                            <div style={{color:'red'}}>{confirmPasswordError[1]}</div>
-                    }
-                </div>
-                <div className="submit_button">
-                    <button type='submit' onClick={handleSubmit}>Change</button>
+                <div className="default-form">
+                    <div className="input-info">
+                        <label htmlFor='old_password'>
+                            Old password
+                        </label>
+                        <input type='password' id='old_password' onChange={handleOldPasswordChange}/>
+                        {
+                            oldPasswordError[0] && 
+                                <div className="errors">{oldPasswordError[1]}</div>
+                        }
+                    </div>
+                    <div className="input-info">
+                        <label htmlFor='new_password'>
+                            New password
+                        </label>
+                        <input type='password' id='new_password' onChange={handleNewPasswordChange}/>
+                        {
+                            newPasswordError[0] && 
+                                <div className="errors">{newPasswordError[1]}</div>
+                        }
+                    </div>
+                    <div className="input-info">
+                        <label htmlFor='confirm_new_password'>
+                            Confirm password
+                        </label>
+                        <input type='password' id='confirm_new_password' onChange={checkIfConfirmedPasswordMatchs}/>
+                        {
+                            confirmPasswordError[0] && 
+                                <div className="errors">{confirmPasswordError[1]}</div>
+                        }
+                    </div>
+                    <div className="submit_button">
+                        <button type='submit' onClick={handleSubmit}>Change</button>
+                    </div>
+                    <p className="errors">
+                        <ul>
+                            {errors.map((error) => <li key={error}>{error}</li>)}
+                        </ul>
+                    </p>
                 </div>
             </form>
-            <p style={{color:'red'}}>
-                <ul>
-                    {errors.map((error) => <li key={error}>{error}</li>)}
-                </ul>
-            </p>
-            <Link to={'/profile'}>Abort and go back</Link>
         </div>
     );
 }

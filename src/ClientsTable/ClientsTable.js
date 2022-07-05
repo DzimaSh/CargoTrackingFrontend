@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useTable } from "react-table";
 import { useNavigate, useSearchParams, useLocation, Link } from "react-router-dom";
 import { configureRequest, configureRequestWithoutParams } from "../service/auth.service";
+import './ClientsTable.css';
 
 function Table({ columns, data }) {
   const {
@@ -23,7 +24,7 @@ function Table({ columns, data }) {
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr {...headerGroup.getHeaderGroupProps()} className="table-head">
             {headerGroup.headers.map(column => (
               <th {...column.getHeaderProps()}>{column.render('Header')}</th>
             ))}
@@ -34,7 +35,7 @@ function Table({ columns, data }) {
         {rows.map((row, i) => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps()} className="table-body">
               {row.cells.map(cell => {
                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
               })}
@@ -137,15 +138,28 @@ export function ClientsTable() {
   }
 
   return (
-    <>
-      <input type='text' onChange={handleNameChange} value={name}></input>
-      <select onChange={handleStatusesChange} value={statuses}>
-        <option></option>
-        <option>PRIVATE</option>
-        <option>LEGAL</option>
-      </select>
-      <Table columns={columns} data={clients} />
-      <Link to={'/clients/new'}>Create new client</Link>
-    </>
+    <div className="clients">
+      <div className="user-links">
+        <ul>
+          <li><Link to={'/clients/new'}>Create new client</Link></li>
+          <li><Link to={'/'}>Go back</Link></li>
+        </ul>
+      </div>
+      <div className="clients-table">
+        <div className="search-params">
+          <div className="default-input">
+            <input type='text' onChange={handleNameChange} value={name} placeholder="Serach by name"></input>
+          </div>
+          <div className="status-select">
+            <select onChange={handleStatusesChange} value={statuses}>
+              <option default value="">Search by status</option>
+              <option>PRIVATE</option>
+              <option>LEGAL</option>
+            </select>
+          </div>
+        </div>
+        <Table columns={columns} data={clients} />
+      </div>
+    </div>
   )
 }

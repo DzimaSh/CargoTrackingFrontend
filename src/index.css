@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+}
+a:active {
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+}
+button:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+.user-links {
+    background-color: whitesmoke;
+    align-self: flex-start;
+}
+.user-links li {
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+    padding: 5px;
+}
+.errors {
+    color: red;
+}
+.default-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-left: 15px;
+    width: 400px;
+}

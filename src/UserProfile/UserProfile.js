@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './UserProfile.css';
 import axios from "axios";
 import { configureRequestWithoutParams } from "../service/auth.service";
 import { Link } from "react-router-dom";
@@ -20,39 +21,100 @@ export function UserProfile() {
 
     return (
         <div className="profile">
-            <div className="profile_info_wrap">
-                <h4>About me:</h4>
-                <div className="profile_info_short">
-                    {userData.name && <div><b>Name: </b>{userData.name}</div>}
-                    <div><b>Surname: </b>{userData.surname}</div>
-                    {userData.patronymic && <div><b>Patronymic: </b>{userData.patronymic}</div>}
-                    <div><b>Login: </b>{userData.login}</div>
-                    <div><b>Email: </b>{userData.email}</div>
+            <div className="user-links">
+                <ul>
+                    <li><Link to={'update'} state={userData}>Update profile</Link></li>
+                    <li><Link to={'change-password'}>Change password</Link></li>
+                    <li><Link to={'/'}>Go back</Link></li>
+                </ul>
+            </div>
+            <div className="profile-info-wrap">
+                <p>About me:</p>
+                <div className="profile-info">
+                    {userData.name && 
+                        <div className="info-wrapper">
+                            <div className="label">Name:</div>
+                            <div className="info">{userData.name}</div>
+                        </div>
+                    }
+                    <div className="info-wrapper">
+                        <div className="label">Surname:</div>
+                        <div className="info">{userData.surname}</div>
+                    </div>
+                    {userData.patronymic && 
+                        <div className="info-wrapper">
+                            <div className="label">Patronymic:</div>
+                            <div className="info">{userData.patronymic}</div>
+                        </div>
+                    }
+                    <div className="info-wrapper">
+                        <div className="label">Login:</div>
+                        <div className="info">{userData.login}</div>
+                    </div>
+                    <div className="info-wrapper">
+                        <div className="label">Email:</div>
+                        <div className="info">{userData.email}</div>
+                    </div>
                 </div>
                 {!showMore &&
-                    <div className="profile_info_full">
-                        <div><b>Id: </b>{userData.id}</div>
-                        {userData.bornDate && <div><b>Born date: </b>{userData.bornDate}</div>}
-                        {userData.town && <div><b>Town: </b>{userData.town}</div>}
-                        {userData.street && <div><b>Street: </b>{userData.street}</div>}
-                        {userData.house && <div><b>House: </b>{userData.house}</div>}
-                        {userData.flat && <div><b>Flat: </b>{userData.flat}</div>}
-                        {userData.passportNum && <div><b>Passport number: </b>{userData.passportNum}</div>}
-                        {userData.issuedBy && <div><b>Passport issuer: </b>{userData.issuedBy}</div>}
-                        <div><b>Roles: </b><ul>{userData.userRoles.map((role) => <li key={role}>{role}</li>)}</ul></div>
+                    <div className="profile-info">
+                        <div className="info-wrapper">
+                            <div className="label">Id:</div>
+                            <div className="info">{userData.id}</div>
+                        </div>
+                        {userData.bornDate && 
+                            <div className="info-wrapper">
+                                <div className="label">Birthday:</div>
+                                <div className="info">{userData.bornDate}</div>
+                            </div>
+                        }
+                        {userData.town && 
+                            <div className="info-wrapper">
+                                <div className="label">Town:</div>
+                                <div className="info">{userData.town}</div>
+                            </div>
+                        }
+                        {userData.street && 
+                            <div className="info-wrapper">
+                                <div className="label">Street:</div>
+                                <div className="info">{userData.street}</div>
+                            </div>
+                        }
+                        {userData.house && 
+                            <div className="info-wrapper">
+                                <div className="label">House:</div>
+                                <div className="info">{userData.house}</div>
+                            </div>
+                        }
+                        {userData.flat && 
+                            <div className="info-wrapper">
+                                <div className="label">Flat:</div>
+                                <div className="info">{userData.flat}</div>
+                            </div>
+                        }
+                        {userData.passportNum && 
+                            <div className="info-wrapper">
+                                <div className="label">Passport number:</div>
+                                <div className="info">{userData.passportNum}</div>
+                            </div>
+                        }
+                        {userData.issuedBy && 
+                            <div className="info-wrapper">
+                                <div className="label">Passport issuer:</div>
+                                <div className="info">{userData.issuedBy}</div>
+                            </div>
+                        }
+                        <div className="info-wrapper">
+                            <div className="label">Roles:</div>
+                            <div className="info">
+                                <ul>{userData.userRoles.map((role) => <li key={role}>{role}</li>)}</ul>
+                            </div>
+                        </div>
                     </div>
                 }
-                <button className="show_button" onClick={() => setShowMore(!showMore)}>
+                <button className="show-button" onClick={() => setShowMore(!showMore)}>
                     {showMore ? 'Show more' : 'Show less'}
                 </button>
-            </div>
-            <div className="links">
-                <div className="update_link">
-                    <Link to={'update'} state={userData}>Update profile</Link>
-                </div>
-                <div className="change-password_link">
-                    <Link to={'change-password'}>Change password</Link>
-                </div>
             </div>
         </div>
     );

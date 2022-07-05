@@ -1,0 +1,46 @@
+.profile {
+    display: flex;
+    align-items: flex-start;
+}
+.profile-info-wrap {
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 400px;
+}
+.profile-info-wrap p {
+    background-color: whitesmoke;
+    font-size: 20px;
+    font-weight: 500;
+}
+.profile-info {
+    margin-left: 10%;
+}
+.info-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+.info-wrapper .label {
+    font-size: 15px;
+    font-weight: 500;
+    width: 150px;
+    align-self: center;
+}
+.info-wrapper .info {
+    text-align: center;
+    align-self: center;
+}
+.info ul {
+    padding-left: 20px;
+    margin-bottom: 0px;
+}
+.show-button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.show-button:focus { 
+    outline: none;
+}

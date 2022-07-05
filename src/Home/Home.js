@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import './Home.css';
 
 export function Home() {
 
@@ -9,29 +10,36 @@ export function Home() {
 
     useEffect (() => {
         let roles = localStorage.getItem('roles');
+        let login = localStorage.getItem('login');
+        console.log(login);
         if (roles !== null) {
-            setMessage('Hello,' + roles);
             setIsAuthenticated(true);
             if (roles.includes('SYS_ADMIN')) {
                 setIsSysAdmin(true);
+                setMessage("Hello, system administator! You can see clients of our company and manage 'em.");
+            } else {
+                setMessage(`Hello, user(${login})! You can see your profile:-) P.S. Sys admin was responsible for your roots!`);
             }
         } else {
-           setIsAuthenticated(false); 
+           setIsAuthenticated(false);
         }
     }, []);
 
     return (
-        <div>
-            {message}
-            <br/>
-            {isSysAdmin && 
-                <Link to={'/clients'}>See clients</Link> 
-            }
-            {isAuthenticated &&
-                <div>
-                    <Link to={'/profile'}>My profile</Link>
-                </div>
-            }
+        <div className="home">
+            <div className="user-links">
+                <ul>
+                {isSysAdmin && 
+                    <li><Link className="link" to={'/clients'}>See clients</Link></li>
+                }
+                {isAuthenticated &&
+                    <li><Link className="link" to={'/profile'}>My profile</Link></li>
+                }
+                </ul>
+            </div>
+            <div className="message">
+                {message}
+            </div>
         </div>
     )
 }
