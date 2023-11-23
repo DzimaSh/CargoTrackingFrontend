@@ -1,0 +1,26 @@
+.head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+.title {
+    align-self: center;
+}
+.links {
+    align-self: center;
+    padding-right: 20px;
+}
+.links ul {
+    display: table-cell;
+}
+.links li {
+    display: inline;
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 3px;
+    text-align: center;
+    height: fit-content;
+}
+
